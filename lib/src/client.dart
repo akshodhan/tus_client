@@ -183,7 +183,8 @@ class TusClient {
   /// Pause the current upload
   pause() {
     _pauseUpload = true;
-    _chunkPatchFuture?.timeout(Duration.zero, onTimeout: () {});
+    _chunkPatchFuture?.timeout(const Duration(seconds: 3),
+        onTimeout: () => http.Response("Timeout occurred", 200));
   }
 
   /// Actions to be performed after a successful upload
